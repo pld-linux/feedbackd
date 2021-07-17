@@ -28,7 +28,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	vala
+Requires(post,postun):	glib2 >= 1:2.50.0
 Requires:	libfeedback = %{version}-%{release}
+Requires:	libgudev >= 232
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -112,8 +114,14 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post
+%glib_compile_schemas
+
+%postun
+%glib_compile_schemas
+
+%post	-n libfeedback -p /sbin/ldconfig
+%postun	-n libfeedback -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
