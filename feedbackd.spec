@@ -16,11 +16,10 @@ Source0:	https://source.puri.sm/Librem5/feedbackd/-/archive/v%{version}/%{name}-
 Source1:	https://gitlab.gnome.org/guidog/gmobile/-/archive/d483537aee4778b114ce5d50c4c8a9f8d58337ed/gmobile-d483537aee4778b114ce5d50c4c8a9f8d58337ed.tar.bz2
 # Source1-md5:	9269121e7d837892784157c8f59fd2e6
 URL:		https://source.puri.sm/Librem5/feedbackd
-BuildRequires:	gi-docgen >= 2021.1
+%{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.66
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	gsound-devel
-%{?with_apidocs:BuildRequires:	gtk-doc}
 BuildRequires:	json-glib-devel >= 1.6.2
 BuildRequires:	libgudev-devel >= 232
 BuildRequires:	libxslt-progs
