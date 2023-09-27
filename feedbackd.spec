@@ -28,7 +28,7 @@ BuildRequires:	meson >= 0.56.1
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.029
 BuildRequires:	vala
 Requires(post,postun):	glib2 >= 1:2.50.0
 Requires:	libfeedback = %{version}-%{release}
@@ -117,9 +117,8 @@ rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
 %if %{with apidocs}
-# FIXME: where to package gi-docgen generated docs?
-install -d $RPM_BUILD_ROOT%{_gtkdocdir}
-%{__mv} $RPM_BUILD_ROOT%{_docdir}/libfeedback-0 $RPM_BUILD_ROOT%{_gtkdocdir}
+install -d $RPM_BUILD_ROOT%{_gidocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/libfeedback-0 $RPM_BUILD_ROOT%{_gidocdir}
 %endif
 
 %clean
@@ -169,5 +168,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files -n libfeedback-apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/libfeedback-0
+%{_gidocdir}/libfeedback-0
 %endif
