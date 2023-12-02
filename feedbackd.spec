@@ -5,14 +5,14 @@
 Summary:	Haptic/visual/audio feedback for GNOME
 Summary(pl.UTF-8):	Dotykowe/wizualne/dźwiękowe informacje zwrotne dla GNOME
 Name:		feedbackd
-Version:	0.2.0
+Version:	0.2.1
 Release:	1
 # most of library is LGPL-2.1+, but lfb-event is GPL-3.0+, so whole library is GPL-3.0+; daemon is GPL-3.0+
 License:	GPL v3+
 Group:		Daemons
 #Source0Download: https://source.puri.sm/Librem5/feedbackd/-/tags
 Source0:	https://source.puri.sm/Librem5/feedbackd/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
-# Source0-md5:	f0763bd62f114759855be14376a3c720
+# Source0-md5:	cd5b3ede03ef4a1167182bf83f9be5ff
 Source1:	https://gitlab.gnome.org/guidog/gmobile/-/archive/d483537aee4778b114ce5d50c4c8a9f8d58337ed/gmobile-d483537aee4778b114ce5d50c4c8a9f8d58337ed.tar.bz2
 # Source1-md5:	9269121e7d837892784157c8f59fd2e6
 URL:		https://source.puri.sm/Librem5/feedbackd
@@ -144,6 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.sigxcpu.feedbackd.gschema.xml
 %{_mandir}/man1/fbcli.1*
 %{_mandir}/man1/fbd-theme-validate.1*
+%{_mandir}/man5/feedback-themes.5*
 %{_mandir}/man8/feedbackd.8*
 
 %files -n libfeedback
