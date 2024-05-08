@@ -5,19 +5,17 @@
 Summary:	Haptic/visual/audio feedback for GNOME
 Summary(pl.UTF-8):	Dotykowe/wizualne/dźwiękowe informacje zwrotne dla GNOME
 Name:		feedbackd
-Version:	0.2.1
+Version:	0.3.0
 Release:	1
-# most of library is LGPL-2.1+, but lfb-event is GPL-3.0+, so whole library is GPL-3.0+; daemon is GPL-3.0+
-License:	GPL v3+
+License:	GPL v3+ (daemon), LGPL v2.1+ (library)
 Group:		Daemons
 #Source0Download: https://source.puri.sm/Librem5/feedbackd/-/tags
 Source0:	https://source.puri.sm/Librem5/feedbackd/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
-# Source0-md5:	cd5b3ede03ef4a1167182bf83f9be5ff
-Source1:	https://gitlab.gnome.org/guidog/gmobile/-/archive/d483537aee4778b114ce5d50c4c8a9f8d58337ed/gmobile-d483537aee4778b114ce5d50c4c8a9f8d58337ed.tar.bz2
-# Source1-md5:	9269121e7d837892784157c8f59fd2e6
+# Source0-md5:	6b66bce18a0168fc9ca2b849b9f93a0e
 URL:		https://source.puri.sm/Librem5/feedbackd
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.66
+BuildRequires:	gmobile-devel >= 0.1.0
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	gsound-devel
 BuildRequires:	json-glib-devel >= 1.6.2
@@ -30,6 +28,7 @@ BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.029
 BuildRequires:	vala
 Requires(post,postun):	glib2 >= 1:2.50.0
+Requires:	gmobile >= 0.1.0
 Requires:	libfeedback = %{version}-%{release}
 Requires:	libgudev >= 232
 Requires:	json-glib >= 1.6.2
@@ -50,6 +49,7 @@ oraz wiązania GObject, ułatwiające używanie go z poziomu aplikacji.
 %package -n libfeedback
 Summary:	GNOME Feedback library
 Summary(pl.UTF-8):	Biblioteka GNOME Feedback
+License:	LGPL v2.1+
 Group:		Libraries
 Requires:	glib2 >= 1:2.66
 Suggests:	%{name} = %{version}-%{release}
@@ -63,6 +63,7 @@ Biblioteka GNOME Feedback.
 %package -n libfeedback-devel
 Summary:	Header files for Feedback library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Feedback
+License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	libfeedback = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.66
@@ -76,6 +77,7 @@ Pliki nagłówkowe biblioteki Feedback.
 %package -n vala-libfeedback
 Summary:	Vala API for Feedback library
 Summary(pl.UTF-8):	API języka Vala do biblioteki API
+License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	libfeedback-devel = %{version}-%{release}
 Requires:	vala
@@ -89,6 +91,7 @@ API języka Vala do biblioteki API.
 %package -n libfeedback-apidocs
 Summary:	API documentation for Feedback library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki Feedback
+License:	LGPL v2.1+
 Group:		Documentation
 BuildArch:	noarch
 
@@ -100,8 +103,6 @@ Dokumentacja API biblioteki Feedback.
 
 %prep
 %setup -q -n %{name}-v%{version}
-
-%{__tar} xf %{SOURCE1} -C subprojects/gmobile --strip-components=1
 
 %build
 %meson build \
