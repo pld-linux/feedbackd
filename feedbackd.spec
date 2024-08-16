@@ -5,13 +5,13 @@
 Summary:	Haptic/visual/audio feedback for GNOME
 Summary(pl.UTF-8):	Dotykowe/wizualne/dźwiękowe informacje zwrotne dla GNOME
 Name:		feedbackd
-Version:	0.3.0
+Version:	0.4.1
 Release:	1
 License:	GPL v3+ (daemon), LGPL v2.1+ (library)
 Group:		Daemons
 #Source0Download: https://source.puri.sm/Librem5/feedbackd/-/tags
 Source0:	https://source.puri.sm/Librem5/feedbackd/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
-# Source0-md5:	6b66bce18a0168fc9ca2b849b9f93a0e
+# Source0-md5:	cc60ee4c32d22b3599bc49498f1a48a0
 URL:		https://source.puri.sm/Librem5/feedbackd
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.66
@@ -21,7 +21,7 @@ BuildRequires:	gsound-devel
 BuildRequires:	json-glib-devel >= 1.6.2
 BuildRequires:	libgudev-devel >= 232
 BuildRequires:	libxslt-progs
-BuildRequires:	meson >= 0.56.1
+BuildRequires:	meson >= 1.0.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
@@ -143,6 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.sigxcpu.Feedback.service
 %{_datadir}/feedbackd
 %{_datadir}/glib-2.0/schemas/org.sigxcpu.feedbackd.gschema.xml
+/lib/udev/rules.d/90-feedbackd.rules
 %{_mandir}/man1/fbcli.1*
 %{_mandir}/man1/fbd-theme-validate.1*
 %{_mandir}/man5/feedback-themes.5*
