@@ -1,0 +1,24 @@
+Fix incorrect format strings with 64-bit time_t and 32-bit long
+--- feedbackd-v0.5.0/src/fbd-alert-slider.c.orig	2024-09-28 08:41:23.000000000 +0200
++++ feedbackd-v0.5.0/src/fbd-alert-slider.c	2024-10-03 19:32:09.116840609 +0200
+@@ -24,6 +24,7 @@
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <grp.h>
++#include <inttypes.h>
+ #include <stdio.h>
+ #include <sys/stat.h>
+ #include <sys/types.h>
+@@ -196,9 +197,9 @@ on_input_ready (GIOChannel *source, GIOC
+       continue;
+     }
+ 
+-    g_debug ("Event: time %ld.%06ld, value: %d",
+-             ev[i].input_event_sec,
+-             ev[i].input_event_usec,
++    g_debug ("Event: time %" PRId64 ".%06" PRId64 ", value: %d",
++             (int64_t)ev[i].input_event_sec,
++             (int64_t)ev[i].input_event_usec,
+              ev[i].value);
+     set_level (ev[i].value, FALSE);
+   }

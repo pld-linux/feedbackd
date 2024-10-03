@@ -6,12 +6,13 @@ Summary:	Haptic/visual/audio feedback for GNOME
 Summary(pl.UTF-8):	Dotykowe/wizualne/dźwiękowe informacje zwrotne dla GNOME
 Name:		feedbackd
 Version:	0.5.0
-Release:	1
+Release:	2
 License:	GPL v3+ (daemon), LGPL v2.1+ (library)
 Group:		Daemons
 #Source0Download: https://source.puri.sm/Librem5/feedbackd/-/tags
 Source0:	https://source.puri.sm/Librem5/feedbackd/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
 # Source0-md5:	80be81e175fc73e6d9dfcce79b6cb6f7
+Patch0:		%{name}-types.patch
 URL:		https://source.puri.sm/Librem5/feedbackd
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.66
@@ -103,6 +104,7 @@ Dokumentacja API biblioteki Feedback.
 
 %prep
 %setup -q -n %{name}-v%{version}
+%patch0 -p1
 
 %build
 %meson build \
