@@ -5,13 +5,13 @@
 Summary:	Haptic/visual/audio feedback for GNOME
 Summary(pl.UTF-8):	Dotykowe/wizualne/dźwiękowe informacje zwrotne dla GNOME
 Name:		feedbackd
-Version:	0.4.1
+Version:	0.5.0
 Release:	1
 License:	GPL v3+ (daemon), LGPL v2.1+ (library)
 Group:		Daemons
 #Source0Download: https://source.puri.sm/Librem5/feedbackd/-/tags
 Source0:	https://source.puri.sm/Librem5/feedbackd/-/archive/v%{version}/%{name}-v%{version}.tar.bz2
-# Source0-md5:	cc60ee4c32d22b3599bc49498f1a48a0
+# Source0-md5:	80be81e175fc73e6d9dfcce79b6cb6f7
 URL:		https://source.puri.sm/Librem5/feedbackd
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.66
@@ -138,11 +138,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 %attr(755,root,root) %{_bindir}/fbcli
 %attr(755,root,root) %{_bindir}/fbd-theme-validate
+%attr(755,root,root) %{_libexecdir}/fbd-alert-slider
 %attr(755,root,root) %{_libexecdir}/fbd-ledctrl
 %attr(755,root,root) %{_libexecdir}/feedbackd
 %{_datadir}/dbus-1/services/org.sigxcpu.Feedback.service
 %{_datadir}/feedbackd
 %{_datadir}/glib-2.0/schemas/org.sigxcpu.feedbackd.gschema.xml
+%{systemduserunitdir}/fbd-alert-slider.service
 /lib/udev/rules.d/90-feedbackd.rules
 %{_mandir}/man1/fbcli.1*
 %{_mandir}/man1/fbd-theme-validate.1*
